@@ -1,8 +1,10 @@
-import data from './static/storedata.json'
+// import data from './static/storedata.json'
+import axios from 'axios'
+
 let dynamicRoutes = () => {
-  return new Promise(resolve => {
-    resolve(data.map(el => `product/${el.id}`))
-  })
+  return axios.get('https://upbeat-davinci-987e30.netlify.com/storedata.json').then(res => {
+   return res.data.map(product => `/product/${product.id}`)
+ })
 }
 
 export default {
